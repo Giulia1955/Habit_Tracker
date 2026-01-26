@@ -1,24 +1,41 @@
-Habit Tracker API
+🌱 Habit Tracker API
 
-Overview
-The Habit Tracker API is a RESTful API built with Node.js, Express, and MongoDB.
-Its main purpose is to store and manage personal habits, allowing users to organize tasks by priority and classification, helping them focus on what is most important.
+A RESTful API designed to help users store, organize, and prioritize personal habits, making daily routines easier to manage and track.
 
-This project was developed as a learning exercise to practice backend development concepts, RESTful APIs, MVC architecture, and database modeling with Mongoose.
+This project focuses on separating habits by priority and classification, allowing better organization and focus on what truly matters.
 
-Main Features
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Create, update, and delete habits (tasks)
+📖 Overview
 
-Assign priority and urgency to tasks
+The Habit Tracker API was developed using Node.js, Express, and MongoDB.
+It provides endpoints to create, manage, and filter habits (tasks), with special attention to priority handling and classification attributes such as urgency, completion status, color, and tags.
 
-Classify habits using attributes such as completion status, color, and tag
+The project was built mainly for learning and portfolio purposes, applying best practices in backend development and RESTful API design.
 
-Filter tasks based on classification color
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-JSON-based API responses
+✨ Features
 
-Technologies Used
+✅ Create, update, and delete habits
+
+🚦 Organize habits by priority and urgency
+
+🎨 Classify habits using:
+
+  -completion status
+
+  -color
+
+  -tag
+
+🔍 Filter habits by classification color
+
+📦 JSON-based REST API
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🛠️ Technologies
 
 Node.js
 
@@ -28,58 +45,82 @@ MongoDB
 
 Mongoose
 
-Git and GitHub
+Git & GitHub
 
-Project Structure (simplified)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🗂️ Project Structure
 src/
-controllers
-models
-routes
-app.js
-server.js
+ ├── controllers/
+ ├── models/
+ ├── routes/
+ ├── app.js
+ └── server.js
 
-Data Model Example
-
-Task example:
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+📊 Data Model Example
+Task Object
 {
-"nameTask": "Study Backend",
-"urgency": true,
-"description": "Practice Node.js and MongoDB",
-"deadline": "2026-02-10",
-"classification": {
-"completed": false,
-"color": "red",
-"tag": "study"
-}
+  "nameTask": "Study Backend",
+  "urgency": true,
+  "description": "Practice Node.js and MongoDB",
+  "deadline": "2026-02-10",
+  "classification": {
+    "completed": false,
+    "color": "red",
+    "tag": "study"
+  }
 }
 
-Example Endpoint
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Search tasks by classification color:
+🔗 Example Endpoint
+Search habits by classification color
 GET /tasks/searchcolor?color=red
 
 This endpoint returns all tasks whose classification color matches the provided value.
 
-Getting Started
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Clone the repository
-git clone https://github.com/your-username/API_library.git
-
-Install dependencies
+🚀 Getting Started
+1. Clone the repository
+git clone https://github.com/Giulia_1955/API_library.git
+2. Install dependencies
 npm install
-
-Start the development server
+3. Run the application
 npm run dev
 
-Purpose of the Project
-This API is intended for learning and portfolio purposes, focusing on backend fundamentals, RESTful API design, database modeling, and clean code organization.
+The API will be available at:
 
-Future Improvements
+http://localhost:3000
 
-User authentication
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Advanced filtering by priority, urgency, and completion status
+🎓 Project Purpose
 
-Pagination and sorting
+This project was created to practice and demonstrate knowledge in: Backend development fundamentals, RESTful API architecture, Database modeling with MongoDB and Mongoose, Clean and organized code structure and it also serves as a portfolio project.
 
-Deployment to a cloud platform
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🔮 Future Improvements
+
+🔐 User authentication and authorization
+
+📊 Advanced filters (priority, urgency, completion status)
+
+📄 Pagination and sorting
+
+☁️ Deployment to a cloud platform
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+👩‍💻 Author
+
+Giulia Mezaroba
+
+GitHub: Giulia_1955
+
+Email: giuliamezaroba@gmail.com
+
+✨ Feel free to explore, test, and improve this project!
