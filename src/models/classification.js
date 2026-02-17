@@ -2,20 +2,17 @@ import mongoose from "mongoose";
 
 const classificationSchema = new mongoose.Schema(
   {
+    id: { type: String },
     completed: { type: Boolean, required: true },
     color: { type: String },
     tag: { type: String }
   },
   {
-    versionKey: false,
-    collection: "classifications"
+    versionKey: false
   }
 );
 
-const Classification = mongoose.model(
-  "Classification",
-  classificationSchema
-);
+const classifications = mongoose.model("classifications", classificationSchema);
 
-export default Classification;
+export default classifications;
 export { classificationSchema };

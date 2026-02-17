@@ -1,12 +1,13 @@
-import express from "express"
-import ClassificationController from "../controllers/classificationController.js"
+import express from "express";
+import ClassificationController from "../controllers/classificationController.js";
 
-const routes = express.Router();
+const router = express.Router();
 
-routes.get("/classifications", ClassificationController.listClassifications);
-routes.get("/classifications/:id", ClassificationController.listClassificationById);
-routes.post("/classifications", ClassificationController.createClassification);
-routes.put("/classifications/:id", ClassificationController.updateClassification);
-routes.delete("/classifications/:id", ClassificationController.deleteClassification);
+router
+  .get("/classifications", ClassificationController.listarClassifications)
+  .get("/classifications/:id", ClassificationController.listarClassificationPorId)
+  .post("/classifications", ClassificationController.cadastrarClassification)
+  .put("/classifications/:id", ClassificationController.atualizarClassification)
+  .delete("/classifications/:id", ClassificationController.excluirClassification);
 
-export default routes;
+export default router;
