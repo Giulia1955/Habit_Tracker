@@ -3,11 +3,12 @@ import TaskController from "../controllers/taskController.js";
 
 const router = express.Router();
 
-router.get("/tasks", TaskController.listTask);
-router.get("/tasks/searchcolor", TaskController.searchByColor)
-router.get("/tasks/:id", TaskController.listIdTask);
-router.post("/tasks", TaskController.createTask);
-router.put("/tasks/:id", TaskController.updateTask);
-router.delete("/tasks/:id", TaskController.deleteTask);
+router
+  .get("/tasks", TaskController.listarTasks)
+  .get("/tasks/:id", TaskController.listarTaskPorId)
+  .post("/tasks", TaskController.cadastrarTask)
+  .put("/tasks/:id", TaskController.atualizarTask)
+  .delete("/tasks/:id", TaskController.excluirTask)
+  .get("/tasks/busca/cor", TaskController.listarTaskPorCor);
 
 export default router;

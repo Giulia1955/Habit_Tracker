@@ -1,71 +1,83 @@
-import Tasks from "../models/task.js"
+import Tasks from "../models/task.js";
 
-class TaskController{
-    static async listTask (req, res) {
-        try {
-            const tasks = await Tasks.find(); 
-            res.status(200).json(tasks);
-        } catch (error) {
-            res.status(500).json({ message:` ${error.message} - request failure` });
-        }
+class TaskController {
+
+  static listarTasks = async (req, res) => {
+    try {
+      const tasksResultado = await Tasks.find()
+        .populate("classification")
+        .exec();
+
+      res.status(200).json(tasksResultado);
+    } catch (erro) {
+      res.status(500).json({ message: "Erro interno no servidor" });
     }
+  }
 
-    static async listIdTask (req, res) {
-        try {
-            const id = req.params.id;
-            const foundTask = await Tasks.findById(id); 
-            res.status(200).json(foundTask);
-        } catch (error) {
-            res.status(500).json({ message:` ${error.message} - task request failure` });
-        }
+  static listarTaskPorId = async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      const taskResultado = await Tasks.findById(id)
+        .populate("classification")
+        .exec();
+
+      res.status(200).send(taskResultado);
+    } catch (erro) {
+      res.status(400).send({ message: `${erro.message} - Id da task não localizado.` });
     }
+  }
 
-    static async updateTask (req, res) {
-        try {
-            const id = req.params.id;
-            await Tasks.findByIdAndUpdate(id, req.body); 
-            res.status(200).json({ message: "the taks was updated"});
-        } catch (error) {
-            res.status(500).json({ message:` ${error.message} - task update failure` });
-        }
+  static cadastrarTask = async (req, res) => {
+    try {
+      let task = new Tasks(req.body);
+
+      const taskResultado = await task.save();
+
+      res.status(201).send(taskResultado.toJSON());
+    } catch (erro) {
+      res.status(500).send({ message: `${erro.message} - falha ao cadastrar task.` });
     }
+  }
 
-    static async createTask(req, res){
-        try{
-            const newTask = await Tasks.create(req.body);
-            res.status(201).json({ message: "task registered", task : newTask});
-        } catch (error){
-            res.status(500).json({ message:` ${error.message} - error on register of the task` });
-        }
-        
+  static atualizarTask = async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      await Tasks.findByIdAndUpdate(id, { $set: req.body });
+
+      res.status(200).send({ message: "Task atualizada com sucesso" });
+    } catch (erro) {
+      res.status(500).send({ message: erro.message });
     }
+  }
 
-    static async deleteTask (req, res) {
-        try {
-            const id = req.params.id;
-            await Tasks.findByIdAndDelete(id); 
-            res.status(200).json({ message: "the task was deleted"});
-        } catch (error) {
-            res.status(500).json({ message:` ${error.message} - task delete failure` });
-        }
+  static excluirTask = async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      await Tasks.findByIdAndDelete(id);
+
+      res.status(200).send({ message: "Task removida com sucesso" });
+    } catch (erro) {
+      res.status(500).send({ message: erro.message });
     }
+  }
 
-    static async searchByColor(req, res) {
-        const { color } = req.query;
+  static listarTaskPorCor = async (req, res) => {
+    try {
+      const color = req.query.color;
 
-        try {
-            const tasks = await Tasks.find({
-                "classification.color": color
-            });
+      const tasksResultado = await Tasks.find({
+        "classification.color": color
+      });
 
-            res.status(200).json(tasks);
-        } catch (error) {
-            res.status(500).json({
-                message: `${error.message} - there was a failure on color search`
-            });
-        }
+      res.status(200).send(tasksResultado);
+    } catch (erro) {
+      res.status(500).json({ message: "Erro interno no servidor" });
+    }
+  }
+
 }
-
-};
 
 export default TaskController;
